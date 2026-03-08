@@ -1,0 +1,104 @@
+# =====================================================
+# RViz Configuration File
+# Multi-Drone Leader–Follower Swarm Visualization
+# =====================================================
+#
+# This configuration visualizes:
+#   - TF tree (all drone frames)
+#   - Trajectories (Path) of leader and followers
+#   - Local body axes of each drone
+#
+# Fixed reference frame: "world"
+# =====================================================
+
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+
+Visualization Manager:
+
+  # =====================================================
+  # GLOBAL SETTINGS
+  # =====================================================
+  Global Options:
+    Fixed Frame: world        # All transforms referenced to world frame
+    Background Color: 48; 48; 48   # Dark background for better contrast
+
+  Displays:
+
+    # =====================================================
+    # TF TREE VISUALIZATION
+    # =====================================================
+    # Displays all coordinate frames broadcasted via tf2
+    # Useful for debugging frame alignment and transforms.
+    # =====================================================
+    - Class: rviz_default_plugins/TF
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+
+    # =====================================================
+    # TRAJECTORY VISUALIZATION (nav_msgs/Path)
+    # =====================================================
+    # Each drone publishes its path for trajectory tracking.
+    # Colors are chosen to clearly distinguish drones.
+    # =====================================================
+
+    - Class: rviz_default_plugins/Path
+      Name: Leader Path
+      Topic: /leader_path
+      Color: 255; 0; 0          # Red
+      Line Width: 0.05
+
+    - Class: rviz_default_plugins/Path
+      Name: Follower1 Path
+      Topic: /follower1_path
+      Color: 0; 255; 0          # Green
+      Line Width: 0.05
+
+    - Class: rviz_default_plugins/Path
+      Name: Follower2 Path
+      Topic: /follower2_path
+      Color: 0; 0; 255          # Blue
+      Line Width: 0.05
+
+    - Class: rviz_default_plugins/Path
+      Name: Follower3 Path
+      Topic: /follower3_path
+      Color: 255; 165; 0        # Orange
+      Line Width: 0.05
+
+    - Class: rviz_default_plugins/Path
+      Name: Follower4 Path
+      Topic: /follower4_path
+      Color: 255; 0; 255        # Magenta
+      Line Width: 0.05
+
+
+    # =====================================================
+    # BODY AXES VISUALIZATION
+    # =====================================================
+    # Displays local coordinate axes of each drone.
+    # Helps verify orientation and relative motion.
+    # =====================================================
+
+    - Class: rviz_default_plugins/Axes
+      Name: Leader Axes
+      Reference Frame: leader/base_link
+
+    - Class: rviz_default_plugins/Axes
+      Name: Follower1 Axes
+      Reference Frame: follower1/base_link
+
+    - Class: rviz_default_plugins/Axes
+      Name: Follower2 Axes
+      Reference Frame: follower2/base_link
+
+    - Class: rviz_default_plugins/Axes
+      Name: Follower3 Axes
+      Reference Frame: follower3/base_link
+
+    - Class: rviz_default_plugins/Axes
+      Name: Follower4 Axes
+      Reference Frame: follower4/base_link
